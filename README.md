@@ -1,3 +1,10 @@
+# This is a project of the lesson programming at DHBW Mosbach
+
+Welcome to this project.
+In this lesson we learn the basic skills of programmin like ***loops, functions, packages, ...***
+The skills will be teached in **PYTHON**
+This project staarts with some basic little programs and at the end, i hope that i will have some knowledge to make programs that have more complexity.
+
 # GitHub Codespaces ♥️ Jupyter Notebooks
 
 Welcome to your shiny new codespace! We've got everything fired up and running for you to explore Python and Jupyter notebooks.

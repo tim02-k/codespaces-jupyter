@@ -27,3 +27,4 @@ print(Nor(True, False))
 print(Xor(True, False))
 print(Xnor(True, False))
 
+for i in range(int(input("Number: "))): print(str(i)*i)

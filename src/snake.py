@@ -23,12 +23,6 @@ def move_head():
 def new_body():
     c.create_image(head_pos[0], head_pos[1], image=body_img)
 
-sleep_seconds = 0.2
-while True:
-    move_head()
-    new_body()
-    window.update()
-    sleep(sleep_seconds)
 
 # Richtung ändern
 def richtung_aendern(event):
@@ -43,3 +37,21 @@ def richtung_aendern(event):
         richtung = (1,0)
 
 c.bind_all("<Key>", richtung_aendern)
+
+n_bodies = 10
+bodies = []
+
+def new_body():
+    bodies.append(c.create_image(head_pos[0], head_pos[1], image=body_img))
+
+def delete_old_body():
+    if len(bodies)>n_bodies:
+        c.delete(bodies.pop(0))
+
+sleep_seconds = 0.2
+while True:
+    move_head()
+    new_body()
+    delete_old_body()
+    window.update()
+    sleep(sleep_seconds)

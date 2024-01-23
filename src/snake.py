@@ -55,3 +55,23 @@ while True:
     delete_old_body()
     window.update()
     sleep(sleep_seconds)
+
+n_board_fields = 20
+#obere linke ecke
+x_left = 20
+y_up = 20
+#untere rechte ecke
+x_right = x_left + n_board_fields * grid_length
+y_down = y_up +n_board_fields * grid_length
+
+start_pos= [x_left+ grid_length*0.5+ n_board_fields//2*grid_length, y_up + grid_length*0.5 + n_board_fields//2*grid_length]
+# Board zeichnen
+line_width = 5
+c.create_line(x_left, y_down, x_left, y_up, width=line_width)
+c.create_line(x_right, y_down, x_right, y_up, width=line_width)
+c.create_line(x_left, y_up, x_right, y_up, width=line_width)
+c.create_line(x_left, y_down, x_right, y_down, width=line_width)
+
+def is_outside_board():
+    return head_pos[0] < x_left or head_pos[0] > x_right or head_pos[1] > y_down or head_pos[1] < y_up
+

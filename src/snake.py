@@ -48,14 +48,6 @@ def delete_old_body():
     if len(bodies)>n_bodies:
         c.delete(bodies.pop(0))
 
-sleep_seconds = 0.2
-while True:
-    move_head()
-    new_body()
-    delete_old_body()
-    window.update()
-    sleep(sleep_seconds)
-
 n_board_fields = 20
 #obere linke ecke
 x_left = 20
@@ -75,3 +67,28 @@ c.create_line(x_left, y_down, x_right, y_down, width=line_width)
 def is_outside_board():
     return head_pos[0] < x_left or head_pos[0] > x_right or head_pos[1] > y_down or head_pos[1] < y_up
 
+def does_head_bite_body():
+    for body in bodies:
+        x,y = c.coords(body)
+        if head_pos[0] == x and head_pos[1] == y:
+            return True
+    return False
+    x,y = c.coords(body)
+
+sleep_seconds = 0.2
+while True:
+    richtung = (1, 0)
+    head_pos = list(start_pos)
+    for body in bodies:
+        c.delete(body)
+    bodies = []
+    while True:
+        move_head()
+        if does_head_bite_body():
+            break
+        new_body()
+        delete_old_body()
+        if is_outside_board():
+            break
+        window.update()
+        sleep(sleep_seconds)

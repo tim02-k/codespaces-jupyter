@@ -28,13 +28,17 @@ def new_body():
 def richtung_aendern(event):
     global richtung
     if event.keysym == "Up":
-        richtung = (0,-1)
+        if richtung != (0, 1):
+            richtung = (0, -1)
     elif event.keysym == "Down":
-        richtung= (0,1)
+        if richtung != (0, -1):
+            richtung = (0, 1)
     elif event.keysym == "Left":
-        richtung = (-1,0)
+        if richtung != (1, 0):
+            richtung = (-1, 0)
     elif event.keysym == "Right":
-        richtung = (1,0)
+        if richtung != (-1, 0):
+            richtung = (1, 0)
 
 c.bind_all("<Key>", richtung_aendern)
 

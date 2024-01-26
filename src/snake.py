@@ -1,6 +1,7 @@
 from tkinter import *
 from time import sleep
 from PIL import Image, ImageTk
+from random import randint
 
 H = 500
 B = 500
@@ -10,7 +11,7 @@ c = Canvas(window, width=B, height = H)
 c.pack()
 grid_length= 23
 
-body_img = Image.open("snake_body.png")
+body_img = Image.open("img/snake_body.png")
 body_img = body_img.resize((grid_length, grid_length))
 body_img = ImageTk.PhotoImage(body_img)
 richtung = (1,0)
@@ -78,6 +79,18 @@ def does_head_bite_body():
             return True
     return False
     x,y = c.coords(body)
+
+def gen_apple_pos():
+    while True:
+        candidate = [x_left + grid_length*0.5 + randint(0, n_board_fields-1) * grid_length,
+                        y_up + grid_length*0.5 + randint(0, n_board_fields-1) * grid_length]
+        candidate_valid = True
+        for body in bodies:
+            x, y = c.coords(body)
+            if x == candidate[0] and y == candidate[1]:
+                candidate_valid = False
+        if candidate_valid:
+            return candidate
 
 sleep_seconds = 0.2
 while True:

@@ -17,6 +17,10 @@ body_img = ImageTk.PhotoImage(body_img)
 richtung = (1,0)
 head_pos = [B/2, H/2]
 
+apple_img = Image.open("apple.png")
+apple_img = apple_img.resize((grid_length,grid_length))
+apple_img = ImageTk.PhotoImage(apple_img)
+
 def move_head():
     head_pos[0]+= richtung[0]*grid_length
     head_pos[1]+= richtung[1]*grid_length
@@ -91,6 +95,14 @@ def gen_apple_pos():
                 candidate_valid = False
         if candidate_valid:
             return candidate
+
+def redraw_apple():
+    global apple
+    if apple is not None:
+        c.delete(apple)
+    apple = c.create_image(apple_pos[0], apple_pos[1], image=apple_img)
+
+
 
 sleep_seconds = 0.2
 while True:

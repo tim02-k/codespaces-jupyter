@@ -17,7 +17,7 @@ body_img = ImageTk.PhotoImage(body_img)
 richtung = (1,0)
 head_pos = [B/2, H/2]
 
-apple_img = Image.open("apple.png")
+apple_img = Image.open("img/apple.png")
 apple_img = apple_img.resize((grid_length,grid_length))
 apple_img = ImageTk.PhotoImage(apple_img)
 
@@ -102,12 +102,20 @@ def redraw_apple():
         c.delete(apple)
     apple = c.create_image(apple_pos[0], apple_pos[1], image=apple_img)
 
+apple = None
 
+n_bodies0 = 10
+
+def head_eats_apple():
+    return head_pos[0] == apple_pos[0] and head_pos[1] == apple_pos[1]
 
 sleep_seconds = 0.2
 while True:
+    n_bodies = n_bodies0
     richtung = (1, 0)
     head_pos = list(start_pos)
+    apple_pos = gen_apple_pos()
+    redraw_apple()
     for body in bodies:
         c.delete(body)
     bodies = []
@@ -117,6 +125,11 @@ while True:
             break
         new_body()
         delete_old_body()
+        if head_eats_apple():
+            apple_pos = gen_apple_pos()
+            redraw_apple()
+            n_bodies += 1
+
         if is_outside_board():
             break
         window.update()

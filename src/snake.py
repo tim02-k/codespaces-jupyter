@@ -3,7 +3,7 @@ from time import sleep
 from PIL import Image, ImageTk
 from random import randint
 
-H = 500
+H = 550
 B = 500
 window = Tk()
 window.title("Snake")
@@ -60,7 +60,7 @@ def delete_old_body():
 n_board_fields = 20
 #obere linke ecke
 x_left = 20
-y_up = 20
+y_up = 50
 #untere rechte ecke
 x_right = x_left + n_board_fields * grid_length
 y_down = y_up +n_board_fields * grid_length

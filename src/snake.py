@@ -3,7 +3,7 @@ from time import sleep
 from PIL import Image, ImageTk
 from random import randint
 
-H = 500
+H = 550
 B = 500
 window = Tk()
 window.title("Snake")
@@ -60,7 +60,7 @@ def delete_old_body():
 n_board_fields = 20
 #obere linke ecke
 x_left = 20
-y_up = 20
+y_up = 50
 #untere rechte ecke
 x_right = x_left + n_board_fields * grid_length
 y_down = y_up +n_board_fields * grid_length
@@ -72,6 +72,11 @@ c.create_line(x_left, y_down, x_left, y_up, width=line_width)
 c.create_line(x_right, y_down, x_right, y_up, width=line_width)
 c.create_line(x_left, y_up, x_right, y_up, width=line_width)
 c.create_line(x_left, y_down, x_right, y_down, width=line_width)
+
+score_text = c.create_text(30, 20, fill="black", font=("Helvetica", 30))
+
+def show_points():
+    c.itemconfig(score_text, text=str(score))
 
 def is_outside_board():
     return head_pos[0] < x_left or head_pos[0] > x_right or head_pos[1] > y_down or head_pos[1] < y_up

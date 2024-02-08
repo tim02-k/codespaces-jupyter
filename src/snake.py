@@ -114,7 +114,7 @@ n_bodies0 = 10
 def head_eats_apple():
     return head_pos[0] == apple_pos[0] and head_pos[1] == apple_pos[1]
 
-score_text = c.create_text(30, 20, fill="black", font=("Helvetica", 30))
+score_text = c.create_text(30, 20, fill="white", font=("Helvetica", 30))
 
 def show_points():
     c.itemconfig(score_text, text=str(score))

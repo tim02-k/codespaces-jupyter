@@ -114,6 +114,11 @@ n_bodies0 = 10
 def head_eats_apple():
     return head_pos[0] == apple_pos[0] and head_pos[1] == apple_pos[1]
 
+score_text = c.create_text(30, 20, fill="white", font=("Calibri", 50))
+
+def show_points():
+    c.itemconfig(score_text, text=str(score))
+
 sleep_seconds = 0.2
 while True:
     n_bodies = n_bodies0
@@ -124,6 +129,8 @@ while True:
     for body in bodies:
         c.delete(body)
     bodies = []
+    score = 0
+    show_points()
     while True:
         move_head()
         if does_head_bite_body():
@@ -134,7 +141,8 @@ while True:
             apple_pos = gen_apple_pos()
             redraw_apple()
             n_bodies += 1
-
+            score += 1
+            show_points()
         if is_outside_board():
             break
         window.update()
